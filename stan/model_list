@@ -1,0 +1,4 @@
+hpl1:
+    hierarchical poisson glm with log link
+    assuming identical design across groups
+
