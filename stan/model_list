@@ -1,4 +1,10 @@
 hpl1:
-    hierarchical poisson glm with log link
+    hierarchical poisson glm with log link (henceforth hpl)
     assuming identical design across groups
+hpl2a:
+    hpl with mixture prior on 1+ betas
+hpl2b:
+    hpl with random effects
+hpl3:
+    hpl with mixture prior on 1+ betas and random effects
 
