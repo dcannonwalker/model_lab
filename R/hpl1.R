@@ -1,5 +1,5 @@
 library(cmdstanr)
-file <- file.path("stan/hpl1a.stan")
+file <- file.path("stan/hpl1.stan")
 mod <- cmdstan_model(file)
 
 hpl1_data <- list(

@@ -7,7 +7,4 @@
 .DS_Store
 .quarto
 
-stan/**
-!stan/**/*.*
-stan/**/*.exe
-stan/**/*.EXE
+stan/hpl1
