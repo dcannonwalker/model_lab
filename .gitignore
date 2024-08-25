@@ -7,4 +7,5 @@
 .DS_Store
 .quarto
 
-stan/hpl1
+stan/**
+!stan/*.*
