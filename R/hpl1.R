@@ -1,5 +1,5 @@
 library(cmdstanr)
-file <- file.path("stan/hpl1.stan")
+file <- file.path("stan/hpl1a.stan")
 mod <- cmdstan_model(file)
 
 hpl1_data <- list(
@@ -12,7 +12,8 @@ hpl1_data <- list(
                 rep(c(0, 1, 0, 1), each = 2), c(rep(0, 6), rep(1, 2))),
     run_estimation = 0,
     a_sig2 = rep(10, 4),
-    b_sig2 = rep(10, 4)
+    b_sig2 = rep(10, 4),
+
 )
 
 sim_out <- mod$sample(data = hpl1_data, iter_warmup = 100,
