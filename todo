@@ -1,1 +1,2 @@
-figure out how to get a vector of poisson log likelihoods (poisson_log_lpmf)
+figure out how to get posterior probabilities for each param with a discrete
+mixture prior in the gq block
