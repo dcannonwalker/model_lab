@@ -1,5 +1,5 @@
 functions {
-    #include poisson_log_mixture_lpmf.stan
+    #include poisson_log_lpmf_mixture.stan
 }
 data {
     int<lower=1> G;
@@ -60,8 +60,9 @@ generated quantities {
         }
     }
     array[G, N_g] int y_g_sim;
+    array[G] int which_comp;
     for (g in 1:G) {
-        int which_comp = categorical_rng(to_vector(prob));
-        y_g_sim[g] = poisson_log_rng(log_lambda[g, which_comp]);
+        which_comp[g] = categorical_rng(to_vector(prob));
+        y_g_sim[g] = poisson_log_rng(log_lambda[g, which_comp[g]]);
     }
 }
