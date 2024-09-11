@@ -13,7 +13,6 @@ hpl1_data <- list(
     run_estimation = 0,
     a_sig2 = rep(10, 4),
     b_sig2 = rep(10, 4),
-
 )
 
 sim_out <- mod$sample(data = hpl1_data, iter_warmup = 100,

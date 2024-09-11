@@ -19,8 +19,8 @@ transformed data {
     }
 }
 parameters {
-    vector[G] log_offset; // log scale offset or intercept
     array[G] vector[K] beta;
+    vector[G] log_offset; // log scale offset or intercept
     vector[K] mu;
     vector<lower=0>[K] sig2;
     real mu_offset;
