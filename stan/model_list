@@ -5,8 +5,8 @@ hpl1a:
     hpl1 with loops vectorized out where possible
 hpl2:
     hpl with mixture prior on 1+ betas
-hpl3:
-    hpl with random effects
+hpl2a:
+    hpl2 with fixed variance params
 hpl4:
     hpl with mixture prior on 1+ betas and random effects
 

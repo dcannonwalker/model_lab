@@ -3,9 +3,9 @@ library(cmdstanr)
 library(posterior)
 library(bayesplot)
 library(ggplot2)
-file <- file.path("stan/hpl2.stan")
+file <- file.path("stan/hpl2a.stan")
 mod <- cmdstan_model(file)
-hpl2_data <- list(
+hpl2a_data <- list(
     G = 1000,
     N_g = 8,
     K = 3,
@@ -19,12 +19,14 @@ hpl2_data <- list(
     X_g = cbind(rep(c(0, 1), each = 4),
                 rep(c(0, 1, 0, 1), each = 2), c(rep(0, 6), rep(1, 2))),
     run_estimation = 0,
-    a_sig2 = rep(10, 3),
-    b_sig2 = rep(10, 3),
+    sig2 = 1,
+    # a_sig2 = rep(10, 3),
+    # b_sig2 = rep(10, 3),
     a_mu_offset = 5,
     b_mu_offset = 1,
-    a_sig2_offset = 10,
-    b_sig2_offset = 10
+    sig2_offset = 1
+    # a_sig2_offset = 10,
+    # b_sig2_offset = 10
 )
 
 # simulate dependent var ----
