@@ -1,1 +1,10 @@
 simulate from hpl2
+
+benchmark hpl2 vs hpl2a
+
+write hpl3
+
+check fit quality for hpl3
+
+try using pathfinder or vb for inits to hpl3 sampler
+

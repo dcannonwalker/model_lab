@@ -7,6 +7,6 @@ hpl2:
     hpl with mixture prior on 1+ betas
 hpl2a:
     hpl2 with fixed variance params
-hpl4:
+hpl3:
     hpl with mixture prior on 1+ betas and random effects
 
