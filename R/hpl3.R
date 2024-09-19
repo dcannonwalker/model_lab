@@ -4,7 +4,7 @@ file <- file.path("stan/hpl3.stan")
 mod <- cmdstanr::cmdstan_model(file)
 
 hpl3_data <- list(
-    G = 20,
+    G = 100,
     N_g = 8,
     K = 3,
     U = 4,
@@ -14,7 +14,7 @@ hpl3_data <- list(
     N_mix = 1,
     comps_per_mix = 1,
     mix_idx = matrix(1),
-    y = rpois(160, lambda = 10),
+    y = rpois(800, lambda = 10),
     X_g = cbind(rep(c(0, 1), each = 4),
                 rep(c(0, 1, 0, 1), each = 2), c(rep(0, 6), rep(1, 2))),
     Z_g = rbind(diag(1, 4), diag(1, 4)),
@@ -40,6 +40,19 @@ y_sim_single
 
 hpl3_data$y <- c(t(y_sim_single))
 hpl3_data$run_estimation <- 1
+
+pf <- mod$pathfinder(data = hpl3_data, seed = 1)
+vb <- mod$variational(data = hpl3_data, seed = 1)
+fit_w_pf_init <- mod$sample(data = hpl3_data, seed = 2, init = pf, chains = 2,
+                            parallel_chains = 2, iter_warmup = 1000, iter_sampling = 100)
+fit_wo_init <- mod$sample(data = hpl3_data, seed = 2, chains = 2,
+                          parallel_chains = 2, iter_warmup = 1000, iter_sampling = 100)
+fit_w_vb_init <- mod$sample(data = hpl3_data, seed = 2, init = vb, chains = 2,
+                            parallel_chains = 2, iter_warmup = 1000, iter_sampling = 100)
+fit_w_pf_init$summary()$ess_bulk[1:10]
+fit_wo_init$summary()$ess_bulk[1:10]
+fit_w_pf_init$summary()$ess_tail[1:10]
+fit_wo_init$summary()$ess_tail[1:10]
 
 fit <- mod$sample(data = hpl3_data, seed = 17, chains = 2, parallel_chains = 2, iter_warmup = 1000, iter_sampling = 100)
 
@@ -96,4 +109,12 @@ G_profile <- lapply(G_list, profile_G, mod = mod, iter_warmup = 100, iter_sampli
 total <- sapply(G_profile, function(.x) {.x$total})
 lm(total ~ as.numeric(names(total)))
 plot(names(total), total)
+G_profile[[9]]$chains
 
+pf <- mod$pathfinder(data = hpl3_data, seed = 1)
+fit_w_pf_init <- mod$sample(data = hpl3_data, seed = 2, init = pf, chains = 2,
+                            parallel_chains = 2, iter_warmup = 100, iter_sampling = 100)
+fit_wo_init <- mod$sample(data = hpl3_data, seed = 2, chains = 2,
+                          parallel_chains = 2, iter_warmup = 100, iter_sampling = 100)
+fit_w_pf_init$summary()
+fit_wo_init$summary()

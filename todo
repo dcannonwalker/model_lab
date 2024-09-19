@@ -8,4 +8,8 @@ check fit quality for hpl3
 
 try using pathfinder or vb for inits to hpl3 sampler
 
+    pf init seems to help get larger ESS with fewer samples
+
+narrow priors and check effect on sampling speed
+
 
